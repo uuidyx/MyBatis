@@ -9,7 +9,6 @@ public class User {
     private String mobile;
     private String email;
     private String note;
-    private Integer positionId;
 
     public Integer getId() {
         return id;
@@ -67,19 +66,11 @@ public class User {
         this.note = note;
     }
 
-    public Integer getPositionId() {
-        return positionId;
-    }
-
-    public void setPositionId(Integer positionId) {
-        this.positionId = positionId;
-    }
-
     @Override
     public String toString() {
         return "TUser [id=" + id + ", userName=" + userName + ", realName="
                 + realName + ", sex=" + sex + ", mobile=" + mobile + ", email="
-                + email + ", note=" + note + ", positionId=" + positionId + "]";
+                + email + ", note=" + note + "]";
     }
 
 }
