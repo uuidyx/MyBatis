@@ -99,8 +99,8 @@ CREATE TABLE `t_user` (
   CONSTRAINT `fk_4` FOREIGN KEY (`position_id`) REFERENCES `t_position` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 
-INSERT INTO `t_user` VALUES ('1', 'lison', '李小宇', '1', '186995587411', 'lison@qq.com', 'lison的备注', '1');
-INSERT INTO `t_user` VALUES ('2', 'james', '陈大雷', '1', '18677885200', 'james@qq.com', 'james的备注', '2');
+INSERT INTO `t_user` VALUES ('1', 'oliver', '檀香', '1', '186995587411', 'oliver.csu@gmail.com', 'oliver note', '1');
+INSERT INTO `t_user` VALUES ('2', 'cathy', '柯西', '1', '18677885200', 'cathy.csu@gmail.com', 'cathy note', '2');
 INSERT INTO `t_user` VALUES ('3', 'cindy', '王美丽', '2', '18695988747', 'xxoo@163.com', 'cindy\'s note', '1');
 INSERT INTO `t_user` VALUES ('126', 'mark', '毛毛', '1', '18695988747', 'xxoo@163.com', 'mark\'s note', '1');
 

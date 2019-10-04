@@ -1,7 +1,5 @@
 package ren.oliver.mybatis.quick.start.pojo;
 
-import java.util.List;
-
 public class User {
 
     private Integer id;
