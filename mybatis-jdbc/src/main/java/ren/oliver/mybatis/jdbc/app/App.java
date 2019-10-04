@@ -13,6 +13,15 @@ public class App {
         jdbcDao.queryStatement();
         System.out.println("Query Statement 测试结束");
 
+        // Query Prepared Statement
+        System.out.println("Query Prepared Statement 测试开始");
+        jdbcDao.queryPreparedStatement();
+        System.out.println("Query Prepared Statement 测试结束");
+
+        // Update Statement
+        System.out.println("Update Statement 测试开始");
+        jdbcDao.updateStatement();
+        System.out.println("Update Statement 测试结束");
 
     }
 

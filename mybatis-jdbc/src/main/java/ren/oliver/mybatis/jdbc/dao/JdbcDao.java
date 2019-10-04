@@ -26,9 +26,11 @@ public class JdbcDao {
     private final String DB_PASS = "123456";
 
     public void queryStatement() {
+
         Connection connection = null;
         Statement statement = null;
-        List<User> users = new ArrayList<User>();
+
+        List<User> users = new ArrayList<>();
         try {
 
             // 注册MySQL驱动
@@ -43,8 +45,10 @@ public class JdbcDao {
             System.out.println("创建一个查询");
             statement = connection.createStatement();
 
+            // 创建SQL
             String userName = "oliver";
             String sql = "SELECT * FROM t_user where user_name='" + userName + "'";
+            // 打印SQL
             System.out.println("SQL语句：" + sql);
 
             // 执行SQL语句
@@ -63,6 +67,7 @@ public class JdbcDao {
                 System.out.println(user.toString());
                 users.add(user);
             }
+
             // 关闭连接，释放资源
             resultSet.close();
             statement.close();
@@ -92,31 +97,33 @@ public class JdbcDao {
     }
 
     public void queryPreparedStatement() {
+
         Connection conn = null;
         PreparedStatement stmt = null;
+
         List<User> users = new ArrayList<>();
         try {
-            // STEP 2: 注册mysql的驱动
-            Class.forName("com.mysql.jdbc.Driver");
 
-            // STEP 3: 获得一个连接
-            System.out.println("Connecting to database...");
+            // 注册MySQL驱动
+            System.out.println("注册MySQL驱动");
+            Class.forName(JDBC_DRIVER);
+
+            // 获得一个连接
+            System.out.println("获得一个连接");
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
-            // STEP 4: 创建一个查询
-            System.out.println("Creating statement...");
-            String sql;
-            sql = "SELECT * FROM t_user where user_name= ? ";
+            // 创建一个查询
+            System.out.println("创建一个查询");
+            // 创建SQL
+            String sql = "SELECT * FROM t_user where user_name= ? ";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "lison");
-            System.out.println(stmt.toString());//打印sql
+            stmt.setString(1, "oliver");
+            // 打印SQL
+            System.out.println("SQL: " + stmt.toString());
             ResultSet rs = stmt.executeQuery();
 
-
-            // STEP 5: 从resultSet中获取数据并转化成bean
+            // 从resultSet中获取数据并转化成pojo对象
             while (rs.next()) {
-                System.out.println("------------------------------");
-                // Retrieve by column name
                 User user = new User();
 				user.setId(rs.getInt("id"));
 				user.setUserName(rs.getString("user_name"));
@@ -125,35 +132,102 @@ public class JdbcDao {
                 user.setMobile(rs.getString("mobile"));
                 user.setEmail(rs.getString("email"));
                 user.setNote(rs.getString("note"));
-
                 System.out.println(user.toString());
-
                 users.add(user);
             }
-            // STEP 6: 关闭连接
+
+            // 关闭连接，释放资源
             rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 确保资源一定被释放
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // 打印查询结果数量
+        System.out.println("查询到的总用户数：" + users.size());
+    }
+
+    public void updateStatement() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+
+            // 注册MySQL的驱动
+            System.out.println("注册MySQL的驱动");
+            Class.forName(JDBC_DRIVER);
+
+            // 获得一个连接
+            System.out.println("获得一个连接");
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // 启动手动提交
+            conn.setAutoCommit(false);
+
+            // 创建一个更新
+            System.out.println("创建一个更新");
+            String sql = "update t_user  set mobile= ? where user_name= ? ";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "18999999999");
+            stmt.setString(2, "oliver");
+            // 打印SQL
+            System.out.println(stmt.toString());
+            // 执行SQL
+            int ret = stmt.executeUpdate();
+            System.out.println("此次修改影响数据库的行数为：" + ret);
+
+            // 手动提交数据
+            conn.commit();
+
+            // 关闭连接，释放资源
             stmt.close();
             conn.close();
         } catch (SQLException se) {
             // Handle errors for JDBC
+            try {
+                conn.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             se.printStackTrace();
         } catch (Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
-            // finally block used to close resources
             try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException se2) {
-            }// nothing we can do
-            try {
-                if (conn != null)
-                    conn.close();
+                conn.rollback();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
+            e.printStackTrace();
+        } finally {
+            // 确保资源一定被释放
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println("there are "+users.size()+" users in the list!");
     }
+
 }
