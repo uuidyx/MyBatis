@@ -165,8 +165,10 @@ public class JdbcDao {
     }
 
     public void updateStatement() {
+
         Connection conn = null;
         PreparedStatement stmt = null;
+
         try {
 
             // 注册MySQL的驱动
@@ -199,7 +201,6 @@ public class JdbcDao {
             stmt.close();
             conn.close();
         } catch (SQLException se) {
-            // Handle errors for JDBC
             try {
                 conn.rollback();
             } catch (SQLException e) {
