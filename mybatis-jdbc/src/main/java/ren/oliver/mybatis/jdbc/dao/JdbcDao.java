@@ -4,6 +4,7 @@ import ren.oliver.mybatis.jdbc.pojo.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -90,4 +91,69 @@ public class JdbcDao {
         }
     }
 
+    public void queryPreparedStatement() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        List<User> users = new ArrayList<>();
+        try {
+            // STEP 2: 注册mysql的驱动
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // STEP 3: 获得一个连接
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // STEP 4: 创建一个查询
+            System.out.println("Creating statement...");
+            String sql;
+            sql = "SELECT * FROM t_user where user_name= ? ";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "lison");
+            System.out.println(stmt.toString());//打印sql
+            ResultSet rs = stmt.executeQuery();
+
+
+            // STEP 5: 从resultSet中获取数据并转化成bean
+            while (rs.next()) {
+                System.out.println("------------------------------");
+                // Retrieve by column name
+                User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setUserName(rs.getString("user_name"));
+                user.setRealName(rs.getString("real_name"));
+                user.setSex(rs.getByte("sex"));
+                user.setMobile(rs.getString("mobile"));
+                user.setEmail(rs.getString("email"));
+                user.setNote(rs.getString("note"));
+
+                System.out.println(user.toString());
+
+                users.add(user);
+            }
+            // STEP 6: 关闭连接
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            // Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            // finally block used to close resources
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException se2) {
+            }// nothing we can do
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        System.out.println("there are "+users.size()+" users in the list!");
+    }
 }
