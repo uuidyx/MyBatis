@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ren.oliver.mybatis.quick.start.mapper.UserMapper">
+
+    <select id="selectByPrimaryKey" resultType="ren.oliver.mybatis.quick.start.pojo.User" parameterType="java.lang.Integer">
+		select
+			id,
+			user_name userName,
+			real_name realName,
+			sex,
+			mobile,
+			email,
+			note,
+			position_id positionId
+		from
+		    t_user
+		where
+		    id = #{id, jdbcType=INTEGER}
+	</select>
+
+</mapper>
