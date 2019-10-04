@@ -6,11 +6,12 @@
 
     <groupId>ren.oliver.mybatis</groupId>
     <artifactId>mybatis-parent</artifactId>
-    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>mybatis-jdbc</module>
+        <module>mybatis-quick-start</module>
     </modules>
 
 </project>
