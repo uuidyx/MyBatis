@@ -7,6 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         JdbcDao jdbcDao = new JdbcDao();
+        // Query Statement
         jdbcDao.queryStatement();
     }
 
