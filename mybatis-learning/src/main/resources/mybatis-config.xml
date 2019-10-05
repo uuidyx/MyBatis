@@ -10,7 +10,7 @@
 
     <!-- 别名定义 -->
     <typeAliases>
-        <package name="ren.oliver.mybatis.learning.pojo"/>
+        <package name="ren.oliver.mybatis.learning.pojo" />
     </typeAliases>
 
     <!--配置environment环境 -->
