@@ -12,6 +12,7 @@
     <modules>
         <module>mybatis-jdbc</module>
         <module>mybatis-quick-start</module>
+        <module>mybatis-learning</module>
     </modules>
 
 </project>
