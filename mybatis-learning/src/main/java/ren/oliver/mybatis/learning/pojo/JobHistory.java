@@ -48,4 +48,15 @@ public class JobHistory {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return "JobHistory{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", compName='" + compName + '\'' +
+                ", years=" + years +
+                ", title='" + title + '\'' +
+                '}';
+    }
+
 }
