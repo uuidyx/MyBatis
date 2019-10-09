@@ -13,7 +13,7 @@
         <result column="position_id" property="positionId" jdbcType="INTEGER" />
     </resultMap>
 
-    <resultMap id="userAndJobs1" extends="BaseResultMap" type="TUser">
+    <resultMap id="userAndJobs1" extends="BaseResultMap" type="User">
         <collection property="jobs" ofType="ren.oliver.mybatis.learning.pojo.JobHistory">
             <result column="comp_name" property="compName" jdbcType="VARCHAR" />
             <result column="years" property="years" jdbcType="INTEGER" />
@@ -21,7 +21,7 @@
         </collection>
     </resultMap>
 
-    <resultMap id="userAndJobs2" extends="BaseResultMap" type="TUser">
+    <resultMap id="userAndJobs2" extends="BaseResultMap" type="User">
         <collection property="jobs" fetchType="lazy" column="id" select="ren.oliver.mybatis.learning.mapper.JobHistoryMapper.selectByUserId" />
     </resultMap>
 
@@ -119,7 +119,7 @@
         </where>
     </select>
 
-    <update id="updateIfOper" parameterType="TUser">
+    <update id="updateIfOper" parameterType="User">
         update
           t_user
         set
@@ -148,7 +148,7 @@
           id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateIfAndSetOper" parameterType="TUser">
+    <update id="updateIfAndSetOper" parameterType="User">
         update
           t_user
         <set>
@@ -179,7 +179,7 @@
     </update>
 
 
-    <insert id="insertIfOper" parameterType="TUser">
+    <insert id="insertIfOper" parameterType="User">
         insert into
           t_user (
             <if test="id != null">
@@ -299,7 +299,7 @@
 		  )
 	</insert>
 
-    <insert id="insert2" parameterType="TUser">
+    <insert id="insert2" parameterType="User">
         <selectKey  keyProperty="id" order="AFTER" resultType="int">
             select LAST_INSERT_ID()
         </selectKey>
@@ -317,7 +317,7 @@
           )
     </insert>
 
-    <insert id="insertSelective" parameterType="TUser">
+    <insert id="insertSelective" parameterType="User">
         insert into
           t_user
             <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -374,7 +374,7 @@
             </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="TUser">
+    <update id="updateByPrimaryKeySelective" parameterType="User">
         update
           t_user
         <set>
@@ -404,7 +404,7 @@
           id = #{id, jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="TUser">
+    <update id="updateByPrimaryKey" parameterType="User">
 		update
 		  t_user
 		set

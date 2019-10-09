@@ -31,7 +31,7 @@
 
     <!-- 映射文件，mapper的配置文件 -->
     <mappers>
-        <mapper resource="mybatis/*.xml" />
+        <mapper resource="mybatis/UserMapper.xml" />
     </mappers>
 
 </configuration>
