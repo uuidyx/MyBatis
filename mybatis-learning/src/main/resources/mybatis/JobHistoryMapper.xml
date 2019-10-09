@@ -10,7 +10,11 @@
         <result column="title" property="title" jdbcType="VARCHAR" />
     </resultMap>
 
-    <select id="selectByUserId" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    <sql id="Base_Column_List">
+		id, user_id, comp_name, years, title
+	</sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
           <include refid="Base_Column_List" />
         from
@@ -18,10 +22,6 @@
         where
           user_id = #{userId, jdbcType=INTEGER}
     </select>
-
-    <sql id="Base_Column_List">
-		id, user_id, comp_name, years, title
-	</sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -91,7 +91,7 @@
             </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.enjoylearning.mybatis.entity.TJobHistory">
+    <update id="updateByPrimaryKeySelective" parameterType="ren.oliver.mybatis.learning.pojo.JobHistory">
         update
           t_job_history
         <set>
@@ -112,7 +112,7 @@
           id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.enjoylearning.mybatis.entity.TJobHistory">
+    <update id="updateByPrimaryKey" parameterType="ren.oliver.mybatis.learning.pojo.JobHistory">
 		update
 		  t_job_history
 		set
