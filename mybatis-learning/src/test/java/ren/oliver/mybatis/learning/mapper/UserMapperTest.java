@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -256,6 +257,36 @@ public class UserMapperTest {
         System.out.println(userMapper.insertIfOper(user));
     }
 
+    @Test
+    public void selectForeach4In() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String[] names = new String[]{"lison", "james"};
+        List<User> users = userMapper.selectForeach4In(names);
+        System.out.println(users.size());
+    }
 
+    @Test
+    public void insertForeach4BatchTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        User user1 = new User();
+        user1.setUserName("king");
+        user1.setRealName("李小京");
+        user1.setEmail("li@qq.com");
+        user1.setMobile("18754548787");
+        user1.setNote("king's note");
+        user1.setSex((byte)1);
+        User user2 = new User();
+        user2.setUserName("deer");
+        user2.setRealName("陈大林");
+        user2.setEmail("chen@qq.com");
+        user2.setMobile("18723138787");
+        user2.setNote("deer's note");
+        user2.setSex((byte)1);
+        System.out.println(userMapper.insertForeach4Batch(Arrays.asList(user1,user2)));
+    }
 
 }
