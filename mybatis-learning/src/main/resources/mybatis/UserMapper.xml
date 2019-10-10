@@ -97,10 +97,10 @@
           t_user a
         where
           <if test="email != null and email != ''">
-            a.email like CONCAT('%', #{email}, '%') and
+            a.email like CONCAT('%', #{email}, '%')
           </if>
           <if test="sex != null ">
-            a.sex = #{sex}
+            and a.sex = #{sex}
           </if>
     </select>
 

@@ -180,8 +180,80 @@ public class UserMapperTest {
         String tableName = "t_user";
         Byte sex = 1;
         String orderStr = "sex,user_name";
-        List<User> list = userMapper.selectBySymbol(tableName, inCol, orderStr, sex);
-        System.out.println(list.size());
+        List<User> users = userMapper.selectBySymbol(tableName, inCol, orderStr, sex);
+        System.out.println(users.size());
+    }
+
+    @Test
+    public void selectIfOperTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String email = "qq.com";
+        Byte sex = null;
+        List<User> users = userMapper.selectIfOper(email, sex);
+        System.out.println(users.size());
+    }
+
+    @Test
+    public void selectIfandWhereOperTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String email = "qq.com";
+        Byte sex = null;
+        List<User> users = userMapper.selectIfandWhereOper(email, sex);
+        System.out.println(users.size());
+    }
+
+    @Test
+    public void updateIfOperTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        User user = new User();
+        user.setId(3);
+        user.setUserName("cindy");
+        user.setRealName("王美丽");
+        user.setEmail("xxoo@163.com");
+        user.setMobile("18695988747");
+        user.setNote("cindy's note");
+        user.setSex((byte) 2);
+        user.setPositionId(1);
+        System.out.println(userMapper.updateIfOper(user));
+    }
+
+    @Test
+    public void updateIfAndSetOperTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        User user = new User();
+        user.setId(3);
+        user.setUserName("cindy");
+        user.setRealName("王美丽");
+        user.setEmail("xxoo@163.com");
+        user.setMobile("18695988747");
+        user.setNote("cindy's note");
+        user.setSex((byte) 2);
+        user.setPositionId(1);
+        System.out.println(userMapper.updateIfAndSetOper(user));
+    }
+
+    @Test
+    public void insertIfOperTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        User user = new User();
+        user.setUserName("mark");
+        user.setRealName("毛毛");
+        user.setEmail("xxoo@163.com");
+        user.setMobile("18695988747");
+        user.setNote("mark's note");
+        user.setSex((byte) 1);
+        user.setPositionId(1);
+        System.out.println(userMapper.insertIfOper(user));
     }
 
 
