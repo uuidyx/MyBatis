@@ -5,14 +5,22 @@ import java.util.List;
 public class User {
 
     private Integer id;
+
     private String userName;
+
     private String realName;
+
     private Byte sex;
+
     private String mobile;
+
     private String email;
+
     private String note;
+
     private Integer positionId;
-    private List<JobHistory> jobs ;
+
+    private List<JobHistory> jobs;
 
     public Integer getId() {
         return id;
