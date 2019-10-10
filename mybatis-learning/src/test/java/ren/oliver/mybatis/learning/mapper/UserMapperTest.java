@@ -1,5 +1,6 @@
 package ren.oliver.mybatis.learning.mapper;
 
+import org.junit.Before;
 import ren.oliver.mybatis.learning.pojo.EmailSexBean;
 import ren.oliver.mybatis.learning.pojo.User;
 
@@ -16,15 +17,23 @@ import java.util.Map;
 
 public class UserMapperTest {
 
-    @Test
-    public void deleteByPrimaryKeyTest() throws Exception {
+    SqlSessionFactory sqlSessionFactory;
+
+    SqlSession sqlSession;
+
+    @Before
+    public void init() throws Exception {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         inputStream.close();
         // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        sqlSession = sqlSessionFactory.openSession();
+    }
+
+    @Test
+    public void deleteByPrimaryKeyTest() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -32,14 +41,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void insert1Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void insert1Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -52,14 +54,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void insert2Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void insert2Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -72,14 +67,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void insertSelectiveTest() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void insertSelectiveTest() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -92,14 +80,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectByPrimaryKeyTest() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void selectByPrimaryKeyTest() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -108,14 +89,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void updateByPrimaryKeySelectiveTest() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void updateByPrimaryKeySelectiveTest() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -128,14 +102,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void updateByPrimaryKeyTest() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void updateByPrimaryKeyTest() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -148,14 +115,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectUserJobs1Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void selectUserJobs1Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -164,14 +124,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectUserJobs2Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+    public void selectUserJobs2Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -181,13 +134,6 @@ public class UserMapperTest {
 
     @Test
     public void selectByEmailAndSex1Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -202,13 +148,6 @@ public class UserMapperTest {
 
     @Test
     public void selectByEmailAndSex2Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -220,13 +159,6 @@ public class UserMapperTest {
 
     @Test
     public void selectByEmailAndSex3Test() throws Exception {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        // 读取MyBatis配置文件创建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        inputStream.close();
-        // 获取SqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -238,5 +170,20 @@ public class UserMapperTest {
         List<User> users = userMapper.selectByEmailAndSex3(emailSexBean);
         System.out.println(users.toString());
     }
+
+    @Test
+    public void selectBySymbolTest() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String inCol = "id, user_name, real_name, sex, mobile, email, note";
+        String tableName = "t_user";
+        Byte sex = 1;
+        String orderStr = "sex,user_name";
+        List<User> list = userMapper.selectBySymbol(tableName, inCol, orderStr, sex);
+        System.out.println(list.size());
+    }
+
+
 
 }
