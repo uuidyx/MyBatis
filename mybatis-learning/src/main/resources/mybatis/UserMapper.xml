@@ -90,7 +90,7 @@
 		  ${orderStr}
 	</select>
 
-    <select id="selectIfOper" resultMap="BaseResultMap">
+    <select id="selectIfOper1" resultMap="BaseResultMap">
         select
           <include refid="Base_Column_List" />
         from
@@ -102,6 +102,21 @@
           <if test="sex != null ">
             and a.sex = #{sex}
           </if>
+    </select>
+
+    <select id="selectIfOper2" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from
+        t_user a
+        where
+        1 = 1
+        <if test="email != null and email != ''">
+            and a.email like CONCAT('%', #{email}, '%')
+        </if>
+        <if test="sex != null ">
+            and a.sex = #{sex}
+        </if>
     </select>
 
     <select id="selectIfandWhereOper" resultMap="BaseResultMap">

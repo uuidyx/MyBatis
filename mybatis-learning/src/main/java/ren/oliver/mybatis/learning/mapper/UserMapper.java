@@ -44,7 +44,12 @@ public interface UserMapper {
             @Param("sex") Byte sex
     );
 
-    List<User> selectIfOper(
+    List<User> selectIfOper1(
+            @Param("email") String email,
+            @Param("sex") Byte sex
+    );
+
+    List<User> selectIfOper2(
             @Param("email") String email,
             @Param("sex") Byte sex
     );

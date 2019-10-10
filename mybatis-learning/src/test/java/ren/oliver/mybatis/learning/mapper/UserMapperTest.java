@@ -186,13 +186,24 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectIfOperTest() {
+    public void selectIfOper1Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
         String email = "qq.com";
         Byte sex = null;
-        List<User> users = userMapper.selectIfOper(email, sex);
+        List<User> users = userMapper.selectIfOper1(email, sex);
+        System.out.println(users.size());
+    }
+
+    @Test
+    public void selectIfOper2Test() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String email = "qq.com";
+        Byte sex = null;
+        List<User> users = userMapper.selectIfOper2(email, sex);
         System.out.println(users.size());
     }
 
