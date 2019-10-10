@@ -134,7 +134,7 @@
         </where>
     </select>
 
-    <update id="updateIfOper" parameterType="User">
+    <update id="updateIfOper1" parameterType="User">
         update
           t_user
         set
@@ -161,6 +161,36 @@
           </if>
         where
           id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateIfOper2" parameterType="User">
+        update
+        t_user
+        set
+        <if test="userName != null">
+            user_name = #{userName,jdbcType=VARCHAR},
+        </if>
+        <if test="realName != null">
+            real_name = #{realName,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null">
+            sex = #{sex,jdbcType=TINYINT},
+        </if>
+        <if test="mobile != null">
+            mobile = #{mobile,jdbcType=VARCHAR},
+        </if>
+        <if test="email != null">
+            email = #{email,jdbcType=VARCHAR},
+        </if>
+        <if test="note != null">
+            note = #{note,jdbcType=VARCHAR},
+        </if>
+        <if test="positionId != null">
+            position_id = #{positionId,jdbcType=INTEGER},
+        </if>
+        id = #{id}
+        where
+        id = #{id,jdbcType=INTEGER}
     </update>
 
     <update id="updateIfAndSetOper" parameterType="User">

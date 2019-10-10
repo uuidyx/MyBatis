@@ -59,7 +59,9 @@ public interface UserMapper {
             @Param("sex") Byte sex
     );
 
-    int updateIfOper(User record);
+    int updateIfOper1(User record);
+
+    int updateIfOper2(User record);
 
     int updateIfAndSetOper(User record);
 

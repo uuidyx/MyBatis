@@ -219,7 +219,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void updateIfOperTest() {
+    public void updateIfOper1Test() {
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -232,7 +232,24 @@ public class UserMapperTest {
         user.setNote("cindy's note");
         user.setSex((byte) 2);
         user.setPositionId(1);
-        System.out.println(userMapper.updateIfOper(user));
+        System.out.println(userMapper.updateIfOper1(user));
+    }
+
+    @Test
+    public void updateIfOper2Test() {
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        User user = new User();
+        user.setId(3);
+        user.setUserName("cindy");
+        user.setRealName("王美丽");
+        user.setEmail("xxoo@163.com");
+        user.setMobile("18695988747");
+        user.setNote("cindy's note");
+        user.setSex((byte) 2);
+        user.setPositionId(1);
+        System.out.println(userMapper.updateIfOper2(user));
     }
 
     @Test
