@@ -1,5 +1,6 @@
 package ren.oliver.mybatis.learning.mapper;
 
+import org.apache.ibatis.session.ExecutorType;
 import org.junit.Before;
 import ren.oliver.mybatis.learning.pojo.EmailSexBean;
 import ren.oliver.mybatis.learning.pojo.User;
@@ -315,6 +316,37 @@ public class UserMapperTest {
         user2.setNote("deer's note");
         user2.setSex((byte)1);
         System.out.println(userMapper.insertForeach4Batch(Arrays.asList(user1,user2)));
+    }
+
+    @Test
+    public void batchExcutorTest() {
+        // 获取sqlSession
+		SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        User user1 = new User();
+        user1.setUserName("mark");
+        user1.setRealName("毛毛");
+        user1.setEmail("xxoo@163.com");
+        user1.setMobile("18695988747");
+        user1.setNote("mark's note");
+        user1.setSex((byte) 1);
+        user1.setPositionId(1);
+        System.out.println(userMapper.insertSelective(user1));
+
+        User user2 = new User();
+        user2.setId(3);
+        user2.setUserName("cindy");
+        user2.setRealName("王美丽");
+        user2.setEmail("xxoo@163.com");
+        user2.setMobile("18695988747");
+        user2.setNote("cindy's note");
+        user2.setSex((byte) 2);
+        user2.setPositionId(1);
+        System.out.println(userMapper.updateIfOper1(user2));
+
+        sqlSession.commit();
     }
 
 }
