@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class JdbcDao {
@@ -193,6 +194,74 @@ public class JdbcDao {
             // 执行SQL
             int ret = stmt.executeUpdate();
             System.out.println("此次修改影响数据库的行数为：" + ret);
+
+            // 手动提交数据
+            conn.commit();
+
+            // 关闭连接，释放资源
+            stmt.close();
+            conn.close();
+        } catch (SQLException se) {
+            try {
+                conn.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            se.printStackTrace();
+        } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+            e.printStackTrace();
+        } finally {
+            // 确保资源一定被释放
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void batchStatement() {
+
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+
+            // 注册MySQL的驱动
+            System.out.println("注册MySQL的驱动");
+            Class.forName(JDBC_DRIVER);
+
+            // 获得一个连接
+            System.out.println("获得一个连接");
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+            // 启动手动提交
+            conn.setAutoCommit(false);
+
+            // 创建一个更新
+            System.out.println("创建一个更新");
+            stmt = conn.createStatement();
+            String sq11 = "update t_user set mobile= '110' where user_name= 'lison'";
+            String sq12 = "update t_user set mobile= '120' where user_name= 'james'";
+            stmt.addBatch(sq11);
+            stmt.addBatch(sq12);
+            // 打印SQL
+            System.out.println(stmt.toString());
+            // 执行SQL
+            int[] ret = stmt.executeBatch();
+            System.out.println("此次修改影响数据库的行数为：" + Arrays.toString(ret));
 
             // 手动提交数据
             conn.commit();

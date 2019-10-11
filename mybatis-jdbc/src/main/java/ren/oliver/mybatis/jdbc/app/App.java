@@ -23,6 +23,10 @@ public class App {
         jdbcDao.updateStatement();
         System.out.println("Update Statement 测试结束");
 
+        // Batch Statement
+        System.out.println("Batch Statement 测试开始");
+        jdbcDao.batchStatement();
+        System.out.println("Batch Statement 测试结束");
     }
 
 }
