@@ -21,8 +21,6 @@ public class UserMapperTest {
 
     SqlSessionFactory sqlSessionFactory;
 
-    SqlSession sqlSession;
-
     @Before
     public void init() throws Exception {
         String resource = "mybatis-config.xml";
@@ -30,12 +28,12 @@ public class UserMapperTest {
         // 读取MyBatis配置文件创建SqlSessionFactory
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         inputStream.close();
-        // 获取SqlSession
-        sqlSession = sqlSessionFactory.openSession();
     }
 
     @Test
     public void deleteByPrimaryKeyTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -44,6 +42,8 @@ public class UserMapperTest {
 
     @Test
     public void insert1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -57,6 +57,8 @@ public class UserMapperTest {
 
     @Test
     public void insert2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -70,6 +72,8 @@ public class UserMapperTest {
 
     @Test
     public void insertSelectiveTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -83,6 +87,8 @@ public class UserMapperTest {
 
     @Test
     public void selectByPrimaryKeyTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -92,6 +98,8 @@ public class UserMapperTest {
 
     @Test
     public void updateByPrimaryKeySelectiveTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -105,6 +113,8 @@ public class UserMapperTest {
 
     @Test
     public void updateByPrimaryKeyTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -118,6 +128,8 @@ public class UserMapperTest {
 
     @Test
     public void selectUserJobs1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -127,6 +139,8 @@ public class UserMapperTest {
 
     @Test
     public void selectUserJobs2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -135,7 +149,9 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectByEmailAndSex1Test() throws Exception {
+    public void selectByEmailAndSex1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -149,7 +165,9 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectByEmailAndSex2Test() throws Exception {
+    public void selectByEmailAndSex2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -160,7 +178,9 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectByEmailAndSex3Test() throws Exception {
+    public void selectByEmailAndSex3Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -175,6 +195,8 @@ public class UserMapperTest {
 
     @Test
     public void selectBySymbolTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -188,6 +210,8 @@ public class UserMapperTest {
 
     @Test
     public void selectIfOper1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -199,6 +223,8 @@ public class UserMapperTest {
 
     @Test
     public void selectIfOper2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -210,6 +236,8 @@ public class UserMapperTest {
 
     @Test
     public void selectIfandWhereOperTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -221,6 +249,8 @@ public class UserMapperTest {
 
     @Test
     public void updateIfOper1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -238,6 +268,8 @@ public class UserMapperTest {
 
     @Test
     public void updateIfOper2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -255,6 +287,8 @@ public class UserMapperTest {
 
     @Test
     public void updateIfAndSetOperTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -272,6 +306,8 @@ public class UserMapperTest {
 
     @Test
     public void insertIfOperTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -288,6 +324,8 @@ public class UserMapperTest {
 
     @Test
     public void selectForeach4In() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
@@ -298,6 +336,8 @@ public class UserMapperTest {
 
     @Test
     public void insertForeach4BatchTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
