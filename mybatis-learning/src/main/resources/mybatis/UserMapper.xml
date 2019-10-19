@@ -464,4 +464,24 @@
 		  id = #{id, jdbcType=INTEGER}
 	</update>
 
+    <select id="selectChooseOper" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from
+          t_user a
+        <where>
+            <choose>
+                <when test="email != null and email != ''">
+                    and a.email like CONCAT('%', #{email}, '%')
+                </when>
+                <when test="sex != null">
+                    and a.sex = #{sex}
+                </when>
+                <otherwise>
+                    and 1=1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
 </mapper>

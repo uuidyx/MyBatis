@@ -389,4 +389,17 @@ public class UserMapperTest {
         sqlSession.commit();
     }
 
+    @Test
+    public void selectChooseOperTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行相关查询
+        String email = "qq.com";
+        Byte sex = 2;
+        List<User> list = userMapper.selectChooseOper(email , sex);
+        System.out.println(list.size());
+    }
+
 }

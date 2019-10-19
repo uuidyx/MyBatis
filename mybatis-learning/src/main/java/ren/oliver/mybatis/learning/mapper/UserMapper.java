@@ -71,4 +71,9 @@ public interface UserMapper {
 
     int insertForeach4Batch(List<User> users);
 
+    List<User> selectChooseOper(
+            @Param("email")String email,
+            @Param("sex")Byte sex
+    );
+
 }
