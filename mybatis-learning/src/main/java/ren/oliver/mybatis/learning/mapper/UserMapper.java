@@ -76,4 +76,8 @@ public interface UserMapper {
             @Param("sex")Byte sex
     );
 
+    List<User> selectUserPosition1();
+
+    List<User> selectUserPosition2();
+
 }

@@ -10,47 +10,7 @@
         <result column="mobile" property="mobile" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="note" property="note" jdbcType="VARCHAR" />
-        <result column="position_id" property="positionId" jdbcType="INTEGER" />
     </resultMap>
-
-    <resultMap id="userAndJobs1" extends="BaseResultMap" type="User">
-        <collection property="jobs" ofType="ren.oliver.mybatis.learning.pojo.JobHistory">
-            <result column="comp_name" property="compName" jdbcType="VARCHAR" />
-            <result column="years" property="years" jdbcType="INTEGER" />
-            <result column="title" property="title" jdbcType="VARCHAR" />
-        </collection>
-    </resultMap>
-
-    <resultMap id="userAndJobs2" extends="BaseResultMap" type="User">
-        <collection property="jobs" fetchType="lazy" column="id" select="ren.oliver.mybatis.learning.mapper.JobHistoryMapper.selectByUserId" />
-    </resultMap>
-
-    <select id="selectUserJobs1" resultMap="userAndJobs1">
-		select
-		  a.id,
-		  a.user_name,
-		  a.real_name,
-		  a.sex,
-		  a.mobile,
-		  b.comp_name,
-		  b.years,
-		  b.title
-		from
-		  t_user a, t_job_history b
-		where
-		  a.id = b.user_id
-	</select>
-
-    <select id="selectUserJobs2" resultMap="userAndJobs2">
-		select
-		  a.id,
-		  a.user_name,
-		  a.real_name,
-		  a.sex,
-		  a.mobile
-		from
-		  t_user a
-	</select>
 
     <select id="selectByEmailAndSex1" resultMap="BaseResultMap" parameterType="map">
         select
@@ -156,9 +116,6 @@
           <if test="note != null">
             note = #{note,jdbcType=VARCHAR},
           </if>
-          <if test="positionId != null">
-            position_id = #{positionId,jdbcType=INTEGER}
-          </if>
         where
           id = #{id,jdbcType=INTEGER}
     </update>
@@ -184,9 +141,6 @@
         </if>
         <if test="note != null">
             note = #{note,jdbcType=VARCHAR},
-        </if>
-        <if test="positionId != null">
-            position_id = #{positionId,jdbcType=INTEGER},
         </if>
         id = #{id}
         where
@@ -214,9 +168,6 @@
             </if>
             <if test="note != null">
               note = #{note, jdbcType=VARCHAR},
-            </if>
-            <if test="positionId != null">
-              position_id = #{positionId, jdbcType=INTEGER},
             </if>
         </set>
         where
@@ -248,9 +199,6 @@
             <if test="note != null">
               note,
             </if>
-            <if test="positionId != null">
-              position_id
-            </if>
             )
         values(
           <if test="id != null">
@@ -274,9 +222,6 @@
           <if test="note != null">
             #{note,jdbcType=VARCHAR},
           </if>
-          <if test="positionId != null">
-            #{positionId,jdbcType=INTEGER}
-          </if>
         )
     </insert>
 
@@ -294,7 +239,7 @@
 
     <insert id="insertForeach4Batch">
         insert into
-          t_user (user_name, real_name, sex, mobile,email,note, position_id)
+          t_user (user_name, real_name, sex, mobile,email,note)
         values
           <foreach collection="list" separator="," item="user">
             (
@@ -303,14 +248,13 @@
               #{user.sex,jdbcType=TINYINT},
               #{user.mobile,jdbcType=VARCHAR},
               #{user.email,jdbcType=VARCHAR},
-              #{user.note,jdbcType=VARCHAR},
-              #{user.positionId,jdbcType=INTEGER}
+              #{user.note,jdbcType=VARCHAR}
             )
           </foreach>
     </insert>
 
     <sql id="Base_Column_List">
-		id, user_name, real_name, sex, mobile, email, note, position_id
+		id, user_name, real_name, sex, mobile, email, note
 	</sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -331,7 +275,7 @@
 
     <insert id="insert1" parameterType="User" useGeneratedKeys="true" keyProperty="id">
 		insert into
-		  t_user (id, user_name, real_name, sex, mobile, email, note, position_id)
+		  t_user (id, user_name, real_name, sex, mobile, email, note)
 		values
 		  (
 		    #{id,jdbcType=INTEGER},
@@ -339,8 +283,7 @@
 		    #{realName,jdbcType=VARCHAR},
 		    #{sex,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR},
 		    #{email,jdbcType=VARCHAR},
-		    #{note,jdbcType=VARCHAR},
-		    #{positionId,jdbcType=INTEGER}
+		    #{note,jdbcType=VARCHAR}
 		  )
 	</insert>
 
@@ -349,7 +292,7 @@
             select LAST_INSERT_ID()
         </selectKey>
         insert into
-          t_user (id, user_name, real_name, sex, mobile, email, note, position_id)
+          t_user (id, user_name, real_name, sex, mobile, email, note)
         values
           (
             #{id,jdbcType=INTEGER},
@@ -357,8 +300,7 @@
             #{realName,jdbcType=VARCHAR},
             #{sex,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR},
             #{email,jdbcType=VARCHAR},
-            #{note,jdbcType=VARCHAR},
-            #{positionId,jdbcType=INTEGER}
+            #{note,jdbcType=VARCHAR}
           )
     </insert>
 
@@ -387,9 +329,6 @@
               <if test="note != null">
                 note,
               </if>
-              <if test="positionId != null">
-                position_id,
-              </if>
             </trim>
             <trim prefix="values (" suffix=")" suffixOverrides=",">
               <if test="id != null">
@@ -412,9 +351,6 @@
               </if>
               <if test="note != null">
                 #{note,jdbcType=VARCHAR},
-              </if>
-              <if test="positionId != null">
-                #{positionId,jdbcType=INTEGER},
               </if>
             </trim>
     </insert>
@@ -441,9 +377,6 @@
             <if test="note != null">
                 note = #{note, jdbcType=VARCHAR},
             </if>
-            <if test="positionId != null">
-                position_id = #{positionId, jdbcType=INTEGER},
-            </if>
         </set>
         where
           id = #{id, jdbcType=INTEGER}
@@ -458,8 +391,7 @@
 		  sex = #{sex, jdbcType=TINYINT},
 		  mobile = #{mobile, jdbcType=VARCHAR},
 		  email = #{email, jdbcType=VARCHAR},
-		  note = #{note, jdbcType=VARCHAR},
-		  position_id = #{positionId, jdbcType=INTEGER}
+		  note = #{note, jdbcType=VARCHAR}
 		where
 		  id = #{id, jdbcType=INTEGER}
 	</update>
@@ -483,5 +415,43 @@
             </choose>
         </where>
     </select>
+
+    <resultMap id="userAndPosition1" extends="BaseResultMap" type="User">
+        <association property="position" javaType="ren.oliver.mybatis.learning.pojo.Position" columnPrefix="post_" >
+            <id column="id" property="id"/>
+            <result column="name" property="postName"/>
+            <result column="note" property="note"/>
+        </association>
+    </resultMap>
+
+    <select id="selectUserPosition1" resultMap="userAndPosition1">
+		select user_name,
+			real_name,
+			sex,
+			mobile,
+			email,
+			a.note,
+			b.id  post_id,
+			b.post_name,
+			b.note post_note
+		from t_user a,
+			t_position b
+		where a.position_id = b.id
+	</select>
+
+    <resultMap id="userAndPosition2" extends="BaseResultMap" type="User">
+        <association property="position"  column="position_id" select="ren.oliver.mybatis.learning.mapper.PositionMapper.selectByPrimaryKey" />
+    </resultMap>
+
+    <select id="selectUserPosition2" resultMap="userAndPosition2">
+		select
+		a.id,
+		a.user_name,
+		a.real_name,
+		a.sex,
+		a.mobile,
+		a.position_id
+		from t_user a
+	</select>
 
 </mapper>

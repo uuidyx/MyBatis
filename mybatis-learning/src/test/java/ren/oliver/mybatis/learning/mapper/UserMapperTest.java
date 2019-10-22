@@ -262,7 +262,6 @@ public class UserMapperTest {
         user.setMobile("18695988747");
         user.setNote("cindy's note");
         user.setSex((byte) 2);
-        user.setPositionId(1);
         System.out.println(userMapper.updateIfOper1(user));
     }
 
@@ -281,7 +280,6 @@ public class UserMapperTest {
         user.setMobile("18695988747");
         user.setNote("cindy's note");
         user.setSex((byte) 2);
-        user.setPositionId(1);
         System.out.println(userMapper.updateIfOper2(user));
     }
 
@@ -300,7 +298,6 @@ public class UserMapperTest {
         user.setMobile("18695988747");
         user.setNote("cindy's note");
         user.setSex((byte) 2);
-        user.setPositionId(1);
         System.out.println(userMapper.updateIfAndSetOper(user));
     }
 
@@ -318,7 +315,6 @@ public class UserMapperTest {
         user.setMobile("18695988747");
         user.setNote("mark's note");
         user.setSex((byte) 1);
-        user.setPositionId(1);
         System.out.println(userMapper.insertIfOper(user));
     }
 
@@ -372,7 +368,6 @@ public class UserMapperTest {
         user1.setMobile("18695988747");
         user1.setNote("mark's note");
         user1.setSex((byte) 1);
-        user1.setPositionId(1);
         System.out.println(userMapper.insertSelective(user1));
 
         User user2 = new User();
@@ -383,7 +378,6 @@ public class UserMapperTest {
         user2.setMobile("18695988747");
         user2.setNote("cindy's note");
         user2.setSex((byte) 2);
-        user2.setPositionId(1);
         System.out.println(userMapper.updateIfOper1(user2));
 
         sqlSession.commit();
@@ -399,6 +393,28 @@ public class UserMapperTest {
         String email = "qq.com";
         Byte sex = 2;
         List<User> list = userMapper.selectChooseOper(email , sex);
+        System.out.println(list.size());
+    }
+
+    @Test
+    public void selectUserPosition1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行相关查询
+        List<User> list = userMapper.selectUserPosition1();
+        System.out.println(list.size());
+    }
+
+    @Test
+    public void selectUserPosition2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行相关查询
+        List<User> list = userMapper.selectUserPosition2();
         System.out.println(list.size());
     }
 

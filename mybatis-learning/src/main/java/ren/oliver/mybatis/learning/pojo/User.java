@@ -18,7 +18,7 @@ public class User {
 
     private String note;
 
-    private Integer positionId;
+    private Position position;
 
     private List<JobHistory> jobs;
 
@@ -78,12 +78,12 @@ public class User {
         this.note = note;
     }
 
-    public Integer getPositionId() {
-        return positionId;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositionId(Integer positionId) {
-        this.positionId = positionId;
+    public void setPositionId(Position position) {
+        this.position = position;
     }
 
     public List<JobHistory> getJobs() {
@@ -96,9 +96,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "TUser [id=" + id + ", userName=" + userName + ", realName="
+        return "User [id=" + id + ", userName=" + userName + ", realName="
                 + realName + ", sex=" + sex + ", mobile=" + mobile + ", email="
-                + email + ", note=" + note + ", positionId=" + positionId + "]";
+                + email + ", note=" + note + ", positionId=" + position.getId() + "]";
     }
 
 }

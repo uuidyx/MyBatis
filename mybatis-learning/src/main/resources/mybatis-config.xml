@@ -33,6 +33,7 @@
     <mappers>
         <mapper resource="mybatis/UserMapper.xml" />
         <mapper resource="mybatis/JobHistoryMapper.xml" />
+        <mapper resource="mybatis/PositionMapper.xml" />
         <mapper class="ren.oliver.mybatis.learning.mapper.JobHistoryAnnotationMapper" />
     </mappers>
 
