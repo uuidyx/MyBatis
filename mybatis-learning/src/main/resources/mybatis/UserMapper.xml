@@ -122,29 +122,29 @@
 
     <update id="updateIfOper2" parameterType="User">
         update
-        t_user
+          t_user
         set
-        <if test="userName != null">
+          <if test="userName != null">
             user_name = #{userName,jdbcType=VARCHAR},
-        </if>
-        <if test="realName != null">
+          </if>
+          <if test="realName != null">
             real_name = #{realName,jdbcType=VARCHAR},
-        </if>
-        <if test="sex != null">
+          </if>
+          <if test="sex != null">
             sex = #{sex,jdbcType=TINYINT},
-        </if>
-        <if test="mobile != null">
+          </if>
+          <if test="mobile != null">
             mobile = #{mobile,jdbcType=VARCHAR},
-        </if>
-        <if test="email != null">
+          </if>
+          <if test="email != null">
             email = #{email,jdbcType=VARCHAR},
-        </if>
-        <if test="note != null">
+          </if>
+          <if test="note != null">
             note = #{note,jdbcType=VARCHAR},
-        </if>
-        id = #{id}
+          </if>
+            id = #{id}
         where
-        id = #{id,jdbcType=INTEGER}
+          id = #{id,jdbcType=INTEGER}
     </update>
 
     <update id="updateIfAndSetOper" parameterType="User">
@@ -417,7 +417,7 @@
     </select>
 
     <resultMap id="userAndPosition1" extends="BaseResultMap" type="User">
-        <association property="position" javaType="ren.oliver.mybatis.learning.pojo.Position" columnPrefix="post_" >
+        <association property="position" javaType="Position" columnPrefix="post_" >
             <id column="id" property="id"/>
             <result column="name" property="postName"/>
             <result column="note" property="note"/>
@@ -425,18 +425,20 @@
     </resultMap>
 
     <select id="selectUserPosition1" resultMap="userAndPosition1">
-		select user_name,
-			real_name,
-			sex,
-			mobile,
-			email,
-			a.note,
-			b.id  post_id,
-			b.post_name,
-			b.note post_note
-		from t_user a,
-			t_position b
-		where a.position_id = b.id
+		select
+		  user_name,
+		  real_name,
+		  sex,
+		  mobile,
+		  email,
+	      a.note,
+		  b.id  post_id,
+		  b.post_name,
+		  b.note post_note
+		from
+		  t_user a, t_position b
+		where
+		  a.position_id = b.id
 	</select>
 
     <resultMap id="userAndPosition2" extends="BaseResultMap" type="User">
@@ -445,13 +447,14 @@
 
     <select id="selectUserPosition2" resultMap="userAndPosition2">
 		select
-		a.id,
-		a.user_name,
-		a.real_name,
-		a.sex,
-		a.mobile,
-		a.position_id
-		from t_user a
+		  a.id,
+		  a.user_name,
+		  a.real_name,
+		  a.sex,
+		  a.mobile,
+		  a.position_id
+		from
+		  t_user a
 	</select>
 
     <resultMap id="userAndJobs1" extends="BaseResultMap" type="User">
