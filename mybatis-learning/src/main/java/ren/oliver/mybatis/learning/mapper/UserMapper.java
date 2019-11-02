@@ -24,10 +24,6 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    List<User> selectUserJobs1();
-
-    List<User> selectUserJobs2();
-
     List<User> selectByEmailAndSex1(Map<String, Object> param);
 
     List<User> selectByEmailAndSex2(
@@ -79,5 +75,7 @@ public interface UserMapper {
     List<User> selectUserPosition1();
 
     List<User> selectUserPosition2();
+
+    List<User> selectUserJobs1();
 
 }

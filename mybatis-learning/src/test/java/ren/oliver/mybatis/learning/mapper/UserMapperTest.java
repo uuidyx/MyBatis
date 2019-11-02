@@ -127,28 +127,6 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectUserJobs1Test() {
-        // 获取sqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        // 获取对应mapper
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        // 执行查询语句并返回结果
-        List<User> users = userMapper.selectUserJobs1();
-        System.out.println(users.toString());
-    }
-
-    @Test
-    public void selectUserJobs2Test() {
-        // 获取sqlSession
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        // 获取对应mapper
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        // 执行查询语句并返回结果
-        List<User> users = userMapper.selectUserJobs2();
-        System.out.println(users.toString());
-    }
-
-    @Test
     public void selectByEmailAndSex1Test() {
         // 获取sqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -416,6 +394,17 @@ public class UserMapperTest {
         // 执行相关查询
         List<User> list = userMapper.selectUserPosition2();
         System.out.println(list.size());
+    }
+
+    @Test
+    public void selectUserJobs1Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        List<User> users = userMapper.selectUserJobs1();
+        System.out.println(users.toString());
     }
 
 }

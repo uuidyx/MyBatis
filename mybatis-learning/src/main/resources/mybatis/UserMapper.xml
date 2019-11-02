@@ -454,4 +454,28 @@
 		from t_user a
 	</select>
 
+    <resultMap id="userAndJobs1" extends="BaseResultMap" type="User">
+        <collection property="jobs" ofType="JobHistory" >
+            <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+            <result column="years" property="years" jdbcType="INTEGER" />
+            <result column="title" property="title" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <select id="selectUserJobs1" resultMap="userAndJobs1">
+		select
+		  a.id,
+		  a.user_name,
+		  a.real_name,
+		  a.sex,
+		  a.mobile,
+		  b.comp_name,
+		  b.years,
+		  b.title
+		from
+		  t_user a, t_job_history b
+		where
+		  a.id = b.user_id
+	</select>
+
 </mapper>
