@@ -440,7 +440,7 @@
 	</select>
 
     <resultMap id="userAndPosition2" extends="BaseResultMap" type="User">
-        <association property="position"  column="position_id" select="ren.oliver.mybatis.learning.mapper.PositionMapper.selectByPrimaryKey" />
+        <association property="position" fetchType="lazy" column="position_id" select="ren.oliver.mybatis.learning.mapper.PositionMapper.selectByPrimaryKey" />
     </resultMap>
 
     <select id="selectUserPosition2" resultMap="userAndPosition2">

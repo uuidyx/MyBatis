@@ -6,6 +6,7 @@
 
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
     </settings>
 
     <!-- 别名定义 -->
