@@ -3,9 +3,13 @@ package ren.oliver.mybatis.learning.pojo;
 public class JobHistory {
 
     private Integer id;
+
     private Integer userId;
+
     private String compName;
+
     private Integer years;
+
     private String title;
 
     public Integer getId() {

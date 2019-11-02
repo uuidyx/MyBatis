@@ -3,6 +3,7 @@ package ren.oliver.mybatis.learning.pojo;
 public class EmailSexBean {
 
     private Byte sex;
+
     private String email;
 
     public Byte getSex() {

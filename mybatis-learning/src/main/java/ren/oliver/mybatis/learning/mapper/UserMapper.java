@@ -82,4 +82,6 @@ public interface UserMapper {
 
     List<User> selectUserHealthReport();
 
+    List<User> selectUserRole();
+
 }

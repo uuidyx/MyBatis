@@ -24,6 +24,8 @@ public class User {
 
     private List<HealthReport> healthReports;
 
+    private List<Role> roles;
+
     public Integer getId() {
         return id;
     }
@@ -94,6 +96,22 @@ public class User {
 
     public void setJobs(List<JobHistory> jobs) {
         this.jobs = jobs;
+    }
+
+    public List<HealthReport> getHealthReports() {
+        return this.healthReports;
+    }
+
+    public void setHealthReports(List<HealthReport> healthReports) {
+        this.healthReports = healthReports;
+    }
+
+    public List<Role> getRoles() {
+        return this.roles;
+    }
+
+    public void getRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override

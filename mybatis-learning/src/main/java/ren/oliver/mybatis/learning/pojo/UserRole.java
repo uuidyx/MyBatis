@@ -1,8 +1,9 @@
 package ren.oliver.mybatis.learning.pojo;
 
-public class UserRoleKey {
+public class UserRole {
 
     private Integer roleId;
+
     private Integer userId;
 
     public Integer getRoleId() {

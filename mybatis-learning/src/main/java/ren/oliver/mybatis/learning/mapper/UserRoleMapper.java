@@ -1,13 +1,13 @@
 package ren.oliver.mybatis.learning.mapper;
 
-import ren.oliver.mybatis.learning.pojo.UserRoleKey;
+import ren.oliver.mybatis.learning.pojo.UserRole;
 
 public interface UserRoleMapper {
 
-    int deleteByPrimaryKey(UserRoleKey key);
+    int deleteByPrimaryKey(UserRole key);
 
-    int insert(UserRoleKey record);
+    int insert(UserRole record);
 
-    int insertSelective(UserRoleKey record);
+    int insertSelective(UserRole record);
 
 }

@@ -1,10 +1,10 @@
 package ren.oliver.mybatis.learning.pojo;
 
-public class Position {
+public class Role {
 
     private Integer id;
 
-    private String postName;
+    private String roleName;
 
     private String note;
 
@@ -16,12 +16,12 @@ public class Position {
         this.id = id;
     }
 
-    public String getPostName() {
-        return postName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setPostName(String postName) {
-        this.postName = postName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getNote() {

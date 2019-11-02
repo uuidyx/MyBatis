@@ -88,10 +88,22 @@
                    3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
                注意，如果context是MyBatis3Simple，只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator targetPackage="ren.oliver.mybatis.generator.mapper" targetProject="src/main/java" type="ANNOTATEDMAPPER"/>
+        <javaClientGenerator targetPackage="ren.oliver.mybatis.generator.mapper" targetProject="src/main/java" type="XMLMAPPER"/>
 
         <!-- shema 数据库 tableName表明 -->
         <table schema="mybatis" tableName="t_user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+
+        <!-- shema 数据库 tableName表明 -->
+        <table schema="mybatis" tableName="t_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql"/>
+        </table>
+
+        <!-- shema 数据库 tableName表明 -->
+        <table schema="mybatis" tableName="t_user_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="MySql"/>
         </table>
