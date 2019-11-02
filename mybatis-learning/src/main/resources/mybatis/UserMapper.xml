@@ -496,4 +496,30 @@
 		  t_user a
 	</select>
 
+    <resultMap id="userAndHealthReport" extends="BaseResultMap" type="User">
+        <discriminator column="sex"  javaType="int">
+            <case value="1" resultMap="userAndHealthReportMale" />
+            <case value="2" resultMap="userAndHealthReportFemale" />
+        </discriminator>
+    </resultMap>
+
+    <resultMap id="userAndHealthReportMale" extends="userAndHealthReport" type="User">
+        <collection property="healthReports" column="id" select= "ren.oliver.mybatis.learning.mapper.HealthReportMaleMapper.selectByUserId">
+
+        </collection>
+    </resultMap>
+
+    <resultMap id="userAndHealthReportFemale" extends="userAndHealthReport" type="User">
+        <collection property="healthReports" column="id" select= "ren.oliver.mybatis.learning.mapper.HealthReportFemaleMapper.selectByUserId">
+
+        </collection>
+    </resultMap>
+
+    <select id="selectUserHealthReport" resultMap="userAndHealthReport">
+        select
+          <include refid="Base_Column_List" />
+        from
+          t_user a
+    </select>
+
 </mapper>

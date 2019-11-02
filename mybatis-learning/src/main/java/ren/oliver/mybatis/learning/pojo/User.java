@@ -22,6 +22,8 @@ public class User {
 
     private List<JobHistory> jobs;
 
+    private List<HealthReport> healthReports;
+
     public Integer getId() {
         return id;
     }

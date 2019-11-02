@@ -80,4 +80,6 @@ public interface UserMapper {
 
     List<User> selectUserJobs2();
 
+    List<User> selectUserHealthReport();
+
 }
