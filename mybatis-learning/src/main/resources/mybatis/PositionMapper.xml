@@ -36,7 +36,7 @@
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="ren.oliver.mybatis.learning.pojo.Position">
+    <insert id="insertSelective" parameterType="Position">
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -61,7 +61,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="ren.oliver.mybatis.learning.pojo.Position">
+    <update id="updateByPrimaryKeySelective" parameterType="Position">
         update t_position
         <set>
             <if test="postName != null">
@@ -74,7 +74,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="ren.oliver.mybatis.learning.pojo.Position">
+    <update id="updateByPrimaryKey" parameterType="Position">
         update t_position
         set post_name = #{postName,jdbcType=VARCHAR},
         note = #{note,jdbcType=VARCHAR}
