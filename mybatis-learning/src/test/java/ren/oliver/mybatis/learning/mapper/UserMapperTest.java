@@ -440,4 +440,40 @@ public class UserMapperTest {
         System.out.println(users.toString());
     }
 
+    @Test
+    public void level1CacheTest() {
+        // 获取sqlSession
+        SqlSession sqlSession1 = sqlSessionFactory.openSession();
+        // 获取对应mapper
+        UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        String email = "qq.com";
+        Byte sex = 1;
+        List<User> list1 = userMapper1.selectByEmailAndSex2(email, sex);
+        System.out.println(list1.size());
+
+        // 增删改操作会清空一级缓存和二级缓存
+		User userInsert = new User();
+		userInsert.setUserName("test1");
+		userInsert.setRealName("realname1");
+		userInsert.setEmail("myemail1");
+        userMapper1.insert1(userInsert);
+        List<User> list2 = userMapper1.selectByEmailAndSex2(email, sex);
+        System.out.println(list2.toString());
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("email", email);
+        map.put("sex", sex);
+        List<User> list3 = userMapper1.selectByEmailAndSex1(map);
+        System.out.println(list3.toString());
+
+        // 一级缓存是SQLSession维度的，关闭SQLSession将失效
+        sqlSession1.close();
+
+        SqlSession sqlSession2 = sqlSessionFactory.openSession();
+        UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
+        List<User> list4 = userMapper2.selectByEmailAndSex2(email, sex);
+        System.out.println(list4.toString());
+        sqlSession2.close();
+    }
+
 }

@@ -530,7 +530,6 @@
         </collection>
     </resultMap>
 
-
     <select id="selectUserRole" resultMap="userRoleInfo">
 		select
 		  a.id,
