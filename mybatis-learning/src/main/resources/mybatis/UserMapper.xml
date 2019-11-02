@@ -30,7 +30,7 @@
           a.email like CONCAT('%', #{email}, '%') and a.sex = #{sex}
     </select>
 
-    <select id="selectByEmailAndSex3" resultMap="BaseResultMap" parameterType="ren.oliver.mybatis.learning.pojo.EmailSexBean">
+    <select id="selectByEmailAndSex3" resultMap="BaseResultMap" parameterType="EmailSexBean">
         select
           <include refid="Base_Column_List" />
         from
@@ -479,6 +479,21 @@
 		  t_user a, t_job_history b
 		where
 		  a.id = b.user_id
+	</select>
+
+    <resultMap id="userAndJobs2" extends="BaseResultMap" type="User">
+        <collection property="jobs" fetchType="lazy" column="id" select="ren.oliver.mybatis.learning.mapper.JobHistoryMapper.selectByUserId" />
+    </resultMap>
+
+    <select id="selectUserJobs2" resultMap="userAndJobs2">
+		select
+		  a.id,
+		  a.user_name,
+		  a.real_name,
+		  a.sex,
+		  a.mobile
+		from
+		  t_user a
 	</select>
 
 </mapper>

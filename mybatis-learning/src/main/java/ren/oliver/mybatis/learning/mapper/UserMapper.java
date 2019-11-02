@@ -78,4 +78,6 @@ public interface UserMapper {
 
     List<User> selectUserJobs1();
 
+    List<User> selectUserJobs2();
+
 }

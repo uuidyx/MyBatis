@@ -407,4 +407,15 @@ public class UserMapperTest {
         System.out.println(users.toString());
     }
 
+    @Test
+    public void selectUserJobs2Test() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        List<User> users = userMapper.selectUserJobs2();
+        System.out.println(users.toString());
+    }
+
 }
