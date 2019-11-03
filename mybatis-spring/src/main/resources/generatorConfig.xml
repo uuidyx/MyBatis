@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE generatorConfiguration PUBLIC   
+"-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<properties resource="jdbc-mysql.properties" />
+	
+	<context id="context1" targetRuntime="MyBatis3Simple"	defaultModelType="flat">
+	
+    	<property name="javaFileEncoding" value="UTF-8"/>
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+			<property name="addRemarkComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="${jdbc_driver}" connectionURL="${jdbc_url}" userId="${jdbc_username}" password="${jdbc_password}" />
+
+		<javaModelGenerator targetPackage="ren.oliver.mybatis.spring.entity" targetProject="src/main/java">
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="." targetProject="src/main/resources/mybatis">
+		</sqlMapGenerator>
+
+    	<javaClientGenerator  targetPackage="ren.oliver.mybatis.spring.mapper"	targetProject="src/main/java" type="XMLMAPPER" />
+
+		<table schema="mybatis" tableName="t_health_report_female"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_health_report_male"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_job_history"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_position"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_role"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_role_permission"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_user"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+		<table schema="mybatis" tableName="t_user_role"  >
+			<generatedKey column="id" sqlStatement="MySql"/>
+		</table>
+
+	</context>
+</generatorConfiguration>
