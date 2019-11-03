@@ -458,13 +458,15 @@ public class UserMapperTest {
 		userInsert.setRealName("realname1");
 		userInsert.setEmail("myemail1");
         userMapper1.insert1(userInsert);
+
         List<User> list2 = userMapper1.selectByEmailAndSex2(email, sex);
-        System.out.println(list2.toString());
+        System.out.println(list2.size());
+
         HashMap<String, Object> map = new HashMap<>();
         map.put("email", email);
         map.put("sex", sex);
         List<User> list3 = userMapper1.selectByEmailAndSex1(map);
-        System.out.println(list3.toString());
+        System.out.println(list3.size());
 
         // 一级缓存是SQLSession维度的，关闭SQLSession将失效
         sqlSession1.close();
@@ -472,8 +474,45 @@ public class UserMapperTest {
         SqlSession sqlSession2 = sqlSessionFactory.openSession();
         UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
         List<User> list4 = userMapper2.selectByEmailAndSex2(email, sex);
-        System.out.println(list4.toString());
+        System.out.println(list4.size());
         sqlSession2.close();
+    }
+
+    @Test
+    public void level2CacheTest() {
+        SqlSession sqlSession1 = sqlSessionFactory.openSession();
+
+        UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
+        String email = "qq.com";
+        Byte sex = 1;
+        List<User> list1 = userMapper1.selectByEmailAndSex2(email, sex);
+        System.out.println(list1.size());
+
+        List<User> list2 = userMapper1.selectByEmailAndSex2(email, sex);
+        System.out.println(list2.size());
+
+		User userInsert = new User();
+		userInsert.setUserName("test1");
+		userInsert.setRealName("realname1");
+		userInsert.setEmail("myemail1");
+		userMapper1.insert1(userInsert);
+
+        List<User> list3 = userMapper1.selectByEmailAndSex2(email, sex);
+        System.out.println(list3.size());
+        sqlSession1.close();
+
+
+        SqlSession sqlSession2 = sqlSessionFactory.openSession();
+        UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
+        List<User> list4 = userMapper2.selectByEmailAndSex2(email, sex);
+        System.out.println(list4.size());
+        sqlSession2.close();
+
+        SqlSession sqlSession3 = sqlSessionFactory.openSession();
+        JobHistoryMapper userMapper3 = sqlSession3.getMapper(JobHistoryMapper.class);
+        List<User> list5 = userMapper3.selectByEmailAndSex2(email, sex);
+        System.out.println(list5.size());
+        sqlSession3.close();
     }
 
 }

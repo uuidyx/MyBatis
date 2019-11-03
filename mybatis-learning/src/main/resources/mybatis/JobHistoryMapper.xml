@@ -124,4 +124,30 @@
 		  id = #{id, jdbcType=INTEGER}
 	</update>
 
+    <resultMap id="userInfo" type="User">
+        <id column="id" property="id" />
+        <result column="user_name" property="userName" />
+        <result column="real_name" property="realName" />
+        <result column="sex" property="sex" />
+        <result column="mobile" property="mobile" />
+        <result column="email" property="email" />
+        <result column="note" property="note" />
+    </resultMap>
+
+    <select id="selectByEmailAndSex2" resultMap="userInfo">
+		select
+		  id,
+		  user_name,
+		  real_name,
+		  sex,
+		  mobile,
+		  email,
+		  note,
+		  position_id
+		from
+		  t_user a
+		where
+		  a.email like CONCAT('%', #{email}, '%') and a.sex = #{sex}
+	</select>
+
 </mapper>
