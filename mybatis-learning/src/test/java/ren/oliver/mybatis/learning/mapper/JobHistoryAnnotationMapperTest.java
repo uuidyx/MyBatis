@@ -1,13 +1,12 @@
 package ren.oliver.mybatis.learning.mapper;
 
-import ren.oliver.mybatis.learning.pojo.JobHistory;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import ren.oliver.mybatis.learning.pojo.JobHistory;
 
 import java.io.IOException;
 import java.io.InputStream;
