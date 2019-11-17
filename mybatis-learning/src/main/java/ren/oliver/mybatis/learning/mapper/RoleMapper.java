@@ -2,6 +2,8 @@ package ren.oliver.mybatis.learning.mapper;
 
 import ren.oliver.mybatis.learning.pojo.Role;
 
+import java.util.List;
+
 public interface RoleMapper {
 
     int deleteByPrimaryKey(Integer id);
@@ -15,5 +17,7 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<Role> selectRoleUser();
 
 }

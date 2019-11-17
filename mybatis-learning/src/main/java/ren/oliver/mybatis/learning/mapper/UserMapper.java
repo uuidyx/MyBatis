@@ -84,4 +84,6 @@ public interface UserMapper {
 
     List<User> selectUserRole();
 
+    List<User> selectUserByRoleId(Integer id);
+
 }

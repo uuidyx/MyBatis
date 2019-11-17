@@ -33,6 +33,8 @@
     <!-- 映射文件，mapper的配置文件 -->
     <mappers>
         <mapper resource="mybatis/UserMapper.xml" />
+        <mapper resource="mybatis/RoleMapper.xml" />
+        <mapper resource="mybatis/UserRoleMapper.xml" />
         <mapper resource="mybatis/JobHistoryMapper.xml" />
         <mapper resource="mybatis/PositionMapper.xml" />
         <mapper resource="mybatis/HealthReportMaleMapper.xml" />

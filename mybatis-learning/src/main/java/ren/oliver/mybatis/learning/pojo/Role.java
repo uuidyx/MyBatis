@@ -1,5 +1,7 @@
 package ren.oliver.mybatis.learning.pojo;
 
+import java.util.List;
+
 public class Role {
 
     private Integer id;
@@ -7,6 +9,8 @@ public class Role {
     private String roleName;
 
     private String note;
+
+    List<User> users;
 
     public Integer getId() {
         return id;
@@ -30,6 +34,14 @@ public class Role {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public List<User> getUsers() {
+        return this.users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }

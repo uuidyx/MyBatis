@@ -93,4 +93,15 @@
           id = #{id, jdbcType=INTEGER}
     </update>
 
+    <resultMap id="roleUser" type="Role" extends="BaseResultMap">
+        <collection property="users" fetchType="lazy" column="id" select="ren.oliver.mybatis.learning.mapper.UserMapper.selectUserByRoleId" />
+    </resultMap>
+
+    <select id="selectRoleUser" resultMap="roleUser">
+        select
+          <include refid="Base_Column_List" />
+        from
+          t_role
+    </select>
+
 </mapper>

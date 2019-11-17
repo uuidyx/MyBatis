@@ -2,14 +2,13 @@ package ren.oliver.mybatis.learning.mapper;
 
 import org.apache.ibatis.session.ExecutorType;
 import org.junit.Before;
-import ren.oliver.mybatis.learning.pojo.EmailSexBean;
-import ren.oliver.mybatis.learning.pojo.User;
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import ren.oliver.mybatis.learning.pojo.EmailSexBean;
+import ren.oliver.mybatis.learning.pojo.User;
 
 import java.io.InputStream;
 import java.util.Arrays;
@@ -22,7 +21,7 @@ public class UserMapperTest {
     SqlSessionFactory sqlSessionFactory;
 
     @Before
-    public void init() throws Exception {
+    public void before() throws Exception {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         // 读取MyBatis配置文件创建SqlSessionFactory
@@ -513,6 +512,18 @@ public class UserMapperTest {
         List<User> list5 = userMapper3.selectByEmailAndSex2(email, sex);
         System.out.println(list5.size());
         sqlSession3.close();
+    }
+
+    @Test
+    public void selectUserByRoleIdTest() {
+        // 获取sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 获取对应mapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 执行查询语句并返回结果
+        Integer id = 1;
+        List<User> users = userMapper.selectUserByRoleId(id);
+        System.out.println(users.size());
     }
 
 }
