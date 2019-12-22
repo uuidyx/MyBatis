@@ -29,11 +29,18 @@ public class UserMapperTest {
     }
 
     @Test
-    public void selectByPrimaryKeyTest() throws Exception {
+    public void selectByPrimaryKeyTest() {
         // 获取对应mapper
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         // 执行查询语句并返回结果
         User user = mapper.selectByPrimaryKey(1);
+        System.out.println(user.toString());
+    }
+
+    @Test
+    public void selectOriginTest() {
+        // 直接使用SqlSession执行查询语句并返回结果
+        User user = sqlSession.selectOne("ren.oliver.mybatis.quick.start.mapper.UserMapper.selectByPrimaryKey",1);
         System.out.println(user.toString());
     }
 
