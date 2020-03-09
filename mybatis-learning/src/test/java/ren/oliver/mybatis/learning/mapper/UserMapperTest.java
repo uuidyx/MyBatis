@@ -1,5 +1,7 @@
 package ren.oliver.mybatis.learning.mapper;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.session.ExecutorType;
 import org.junit.Before;
 import org.apache.ibatis.io.Resources;
@@ -90,9 +92,12 @@ public class UserMapperTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 获取对应mapper
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        // 进行分页
+        Page<User> startPage = PageHelper.startPage(1, 1);
         // 执行查询语句并返回结果
         User user = userMapper.selectByPrimaryKey(1);
         System.out.println(user.toString());
+        System.out.println(startPage);
     }
 
     @Test

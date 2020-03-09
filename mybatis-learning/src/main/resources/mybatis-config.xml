@@ -16,9 +16,15 @@
 
     <!-- 插件配置 -->
     <plugins>
+
         <plugin interceptor="ren.oliver.mybatis.learning.interceptor.ThresholdInterceptor">
             <property name="threshold" value="10"/>
         </plugin>
+
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="pageSizeZero" value="true" />
+        </plugin>
+
     </plugins>
 
     <!--配置environment环境 -->
