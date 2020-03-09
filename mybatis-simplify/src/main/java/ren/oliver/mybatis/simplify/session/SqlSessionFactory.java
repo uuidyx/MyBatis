@@ -1,12 +1,5 @@
 package ren.oliver.mybatis.simplify.session;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
-import java.util.Properties;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -14,15 +7,22 @@ import org.dom4j.io.SAXReader;
 import ren.oliver.mybatis.simplify.config.Configuration;
 import ren.oliver.mybatis.simplify.config.MappedStatement;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+import java.util.Properties;
 
 public class SqlSessionFactory {
-	//配置对象全局唯一 加载数据库信息和mapper文件信息
+
+	// 配置对象全局唯一 加载数据库信息和mapper文件信息
 	private Configuration conf = new Configuration();
 
 	public SqlSessionFactory() {
-		//加载数据库信息
+		 // 加载数据库信息
 		 loadDbInfo();
-		 //加载mapper文件信息
+		 // 加载mapper文件信息
 		 loadMappersInfo();
 	}
 	
@@ -33,7 +33,7 @@ public class SqlSessionFactory {
 	 }
 
 	private void loadMappersInfo() {
-		URL resources =null;
+		URL resources;
 		resources = SqlSessionFactory.class.getClassLoader().getResource(conf.MAPPER_CONFIG_LOCATION);
 		File mappers = new File(resources.getFile());
 		if(mappers.isDirectory()){
@@ -48,20 +48,20 @@ public class SqlSessionFactory {
 		// 创建saxReader对象  
 		SAXReader reader = new SAXReader();  
 		// 通过read方法读取一个文件 转换成Document对象  
-		Document document=null;
+		Document document = null;
 		try {
 			document = reader.read(file);
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-		//获取根节点元素对象  
+		// 获取根节点元素对象
 		Element node = document.getRootElement();
-		//获取命名空间
+		// 获取命名空间
 		String namespace = node.attribute("namespace").getData().toString();
-		//获取select子节点列表
+		// 获取select子节点列表
 		List<Element> selects = node.elements("select");
-		for (Element element : selects) {//遍历select节点，将信息记录到MappedStatement对象，并登记到configuration对象中
+		for (Element element : selects) {
+		    // 遍历select节点，将信息记录到MappedStatement对象，并登记到configuration对象中
 			MappedStatement mappedStatement = new MappedStatement();
 			String id = element.attribute("id").getData().toString();
 			String resultType = element.attribute("resultType").getData().toString();
@@ -71,7 +71,8 @@ public class SqlSessionFactory {
 			mappedStatement.setResultType(resultType);
 			mappedStatement.setSql(sql);
 			mappedStatement.setNamespace(namespace);
-			conf.getMappedStatements().put(sourceId, mappedStatement);//登记到configuration对象中
+            // 登记到configuration对象中
+			conf.getMappedStatements().put(sourceId, mappedStatement);
 		}
 	}
 
@@ -81,7 +82,6 @@ public class SqlSessionFactory {
 		 try {
 			p.load(dbIn);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 conf.setDbDriver(p.get("jdbc.driver").toString());
@@ -89,13 +89,5 @@ public class SqlSessionFactory {
 		 conf.setDbUrl(p.get("jdbc.url").toString());
 		 conf.setDbUserName(p.get("jdbc.username").toString());
 	}
-	
-	public static void main(String[] args) {
-		SqlSessionFactory fa = new SqlSessionFactory();
-		System.out.println(fa);
-	}
-	
-	
-	
 
 }

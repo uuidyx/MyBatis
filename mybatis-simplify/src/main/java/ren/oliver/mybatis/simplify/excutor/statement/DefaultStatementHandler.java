@@ -10,10 +10,6 @@ import java.sql.SQLException;
 public class DefaultStatementHandler implements StatementHandler {
 	
 	private MappedStatement mappedStatment;
-	
-	
-	
-	
 
 	public DefaultStatementHandler(MappedStatement mappedStatment) {
 		super();
@@ -30,7 +26,6 @@ public class DefaultStatementHandler implements StatementHandler {
 		try {
 			return statement.executeQuery();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

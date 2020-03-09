@@ -2,13 +2,13 @@ package ren.oliver.mybatis.simplify.entity;
 
 import java.io.Serializable;
 
-public class TUser implements Serializable{
+public class User implements Serializable{
 	
     private Integer id;
 
-    private String userName;
+    private String username;
 
-    private String realName;
+    private String realname;
 
     private String mobile;
 
@@ -24,20 +24,20 @@ public class TUser implements Serializable{
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getRealName() {
-		return realName;
+	public String getRealname() {
+		return realname;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 
 	public String getMobile() {
@@ -66,8 +66,8 @@ public class TUser implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TUser [id=" + id + ", userName=" + userName + ", realName="
-				+ realName + ", mobile=" + mobile + ", email="
+		return "User [id=" + id + ", username=" + username + ", realname="
+				+ realname + ", mobile=" + mobile + ", email="
 				+ email + ", note=" + note + "]";
 	}
     

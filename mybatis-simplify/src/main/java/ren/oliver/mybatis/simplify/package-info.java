@@ -1,1 +1,0 @@
-package ren.oliver.mybatis.simplify;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="ren.oliver.mybatis.simplify.mapper.UserMapper">
+
+    <select id="selectByPrimaryKey" resultType="ren.oliver.mybatis.simplify.entity.User">
+		select
+		id, username, realname, sex, mobile, email, note
+		from t_user_simplify
+		where id =?
+	</select>
+
+    <select id="selectAll" resultType="ren.oliver.mybatis.simplify.entity.User">
+		select
+		id, username, realname, sex, mobile, email, note
+		from t_user_simplify
+	</select>
+
+</mapper>

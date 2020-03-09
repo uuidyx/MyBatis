@@ -39,18 +39,5 @@ public class DefaultParameterHandler implements ParameterHandler {
 		}
 
 	}
-	
-	public static void main(String[] args) {
-		Object[] ttt = new Object[]{"sdfsfd",1};
-		for (int i = 0; i < ttt.length; i++) {
-			
-			if(ttt[i] instanceof Integer){
-				System.out.println(ttt[i]);
-			}else if(ttt[i] instanceof String){
-				System.out.println(ttt[i]);
-				
-			}
-		}
-	}
 
 }

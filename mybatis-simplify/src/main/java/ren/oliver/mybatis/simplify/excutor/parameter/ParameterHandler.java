@@ -25,7 +25,6 @@ import java.sql.SQLException;
  */
 public interface ParameterHandler {
 
-
   void setParameters(PreparedStatement ps)  throws SQLException;
 
 }

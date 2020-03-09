@@ -10,13 +10,11 @@ import java.util.List;
 
 public class DefaultSqlSession implements SqlSession {
 	
-	//配置对象全局唯一 加载数据库信息和mapper文件信息
+	// 配置对象全局唯一 加载数据库信息和mapper文件信息
 	private Configuration conf;
 	
-	//真正提供数据库访问能力的对象
+	// 真正提供数据库访问能力的对象
 	private Executor executor;
-	
-	
 
 	public DefaultSqlSession(Configuration conf) {
 		super();
@@ -37,16 +35,15 @@ public class DefaultSqlSession implements SqlSession {
 		try {
 			return executor.query(mappedStatement, parameter);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	  @Override
-	  //获取当前mapper接口的动态代理
+	  // 获取当前mapper接口的动态代理
 	  public <T> T getMapper(Class<T> type) {
-	    return conf.<T>getMapper(type, this);
+	    return conf.getMapper(type, this);
 	  }
 
 }
